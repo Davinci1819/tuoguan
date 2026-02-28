@@ -1,0 +1,38 @@
+[
+  {
+    "_id": "wq001",
+    "student_id": "stu001",
+    "source_task_id": "hw001",
+    "question_bank_id": "q001",
+    "student_wrong_ans": "学生错误地计算为：15 + 7 = 23",
+    "review_count": 0,
+    "review_strategy": "1天",
+    "next_review_date": "2026-03-01",
+    "createdAt": 1737993600000,
+    "updatedAt": 1737993600000
+  },
+  {
+    "_id": "wq002",
+    "student_id": "stu002",
+    "source_task_id": "hw001",
+    "question_bank_id": "q002",
+    "student_wrong_ans": "学生将'床前明月光'写成了'床前明月光光'",
+    "review_count": 1,
+    "review_strategy": "2天",
+    "next_review_date": "2026-03-02",
+    "createdAt": 1738080000000,
+    "updatedAt": 1738166400000
+  },
+  {
+    "_id": "wq003",
+    "student_id": "stu001",
+    "source_task_id": "hw002",
+    "question_bank_id": "q003",
+    "student_wrong_ans": "学生选择了错误选项B，正确答案应为C",
+    "review_count": 2,
+    "review_strategy": "4天",
+    "next_review_date": "2026-03-04",
+    "createdAt": 1738166400000,
+    "updatedAt": 1738339200000
+  }
+]

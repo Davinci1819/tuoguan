@@ -1,0 +1,42 @@
+{
+  "name": "wrong_question",
+  "title": "错题表",
+  "schemas": [
+    {
+      "name": "student_id",
+      "title": "学生ID",
+      "type": "String"
+    },
+    {
+      "name": "source_task_id",
+      "title": "关联作业ID",
+      "type": "String"
+    },
+    {
+      "name": "question_bank_id",
+      "title": "关联题库ID",
+      "type": "String"
+    },
+    {
+      "name": "student_wrong_ans",
+      "title": "学生错答内容",
+      "type": "String"
+    },
+    {
+      "name": "review_count",
+      "title": "复习次数",
+      "type": "Number"
+    },
+    {
+      "name": "review_strategy",
+      "title": "艾宾浩斯策略",
+      "type": "String"
+    },
+    {
+      "name": "next_review_date",
+      "title": "下次复习日期",
+      "type": "Date",
+      "format": "date"
+    }
+  ]
+}

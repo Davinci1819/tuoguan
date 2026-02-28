@@ -1,0 +1,35 @@
+[
+  {
+    "_id": "q001",
+    "grade": "三年级",
+    "subject": "数学",
+    "question_hash": "a1b2c3d4e5f6g7h8i9j0",
+    "content": "小明有5个苹果，小红有3个苹果，他们一共有多少个苹果？",
+    "answer": "小明有5个苹果，小红有3个苹果，他们一共有5+3=8个苹果。",
+    "knowledge_points": ["加法运算", "应用题"],
+    "createdAt": 1738000000000,
+    "updatedAt": 1738000000000
+  },
+  {
+    "_id": "q002",
+    "grade": "五年级",
+    "subject": "语文",
+    "question_hash": "b2c3d4e5f6g7h8i9j0k1",
+    "content": "请默写《静夜思》的前两句。",
+    "answer": "床前明月光，疑是地上霜。\n\n解析：这是李白《静夜思》的前两句，描绘了诗人在静夜中看到月光照在床前的景象。",
+    "knowledge_points": ["古诗默写", "李白作品", "静夜思"],
+    "createdAt": 1738000001000,
+    "updatedAt": 1738000001000
+  },
+  {
+    "_id": "q003",
+    "grade": "初二",
+    "subject": "英语",
+    "question_hash": "c3d4e5f6g7h8i9j0k1l2",
+    "content": "选择正确的选项：I ______ to school every day.\nA. go\nB. goes\nC. going\nD. went",
+    "answer": "正确答案：A. go\n\n解析：主语I是第一人称单数，一般现在时使用动词原形go。",
+    "knowledge_points": ["一般现在时", "动词形式", "选择题"],
+    "createdAt": 1738000002000,
+    "updatedAt": 1738000002000
+  }
+]

@@ -1,0 +1,59 @@
+[
+  {
+    "_id": "hw001",
+    "subject": "数学",
+    "source_type": "教师布置",
+    "creator_id": "user001",
+    "work_list": "1. 完成课本第25页练习题1-5题\n2. 预习下一章节内容\n3. 完成课后思考题",
+    "source_media": [
+      "https://example.com/homework/math_hw001_1.jpg",
+      "https://example.com/homework/math_hw001_2.jpg"
+    ],
+    "register_ocr_raw": {
+      "text": "数学作业：1. 完成课本第25页练习题1-5题 2. 预习下一章节内容 3. 完成课后思考题",
+      "confidence": 0.95,
+      "language": "zh-CN"
+    },
+    "deadline": 1738012800000,
+    "createdAt": 1737926400000,
+    "updatedAt": 1737926400000
+  },
+  {
+    "_id": "hw002",
+    "subject": "语文",
+    "source_type": "教材配套",
+    "creator_id": "user001",
+    "work_list": "1. 背诵《静夜思》\n2. 完成课后练习\n3. 预习下一课生字",
+    "source_media": [
+      "https://example.com/homework/chinese_hw002.jpg"
+    ],
+    "register_ocr_raw": {
+      "text": "语文作业：1. 背诵《静夜思》 2. 完成课后练习 3. 预习下一课生字",
+      "confidence": 0.92,
+      "language": "zh-CN"
+    },
+    "deadline": 1738099200000,
+    "createdAt": 1737926500000,
+    "updatedAt": 1737926500000
+  },
+  {
+    "_id": "hw003",
+    "subject": "英语",
+    "source_type": "在线平台",
+    "creator_id": "user002",
+    "work_list": "1. 完成单词拼写练习\n2. 阅读短文并回答问题\n3. 准备口语对话",
+    "source_media": [
+      "https://example.com/homework/english_hw003_1.jpg",
+      "https://example.com/homework/english_hw003_2.jpg",
+      "https://example.com/homework/english_hw003_3.jpg"
+    ],
+    "register_ocr_raw": {
+      "text": "英语作业：1. 完成单词拼写练习 2. 阅读短文并回答问题 3. 准备口语对话",
+      "confidence": 0.88,
+      "language": "en"
+    },
+    "deadline": 1738185600000,
+    "createdAt": 1737926600000,
+    "updatedAt": 1737926600000
+  }
+]

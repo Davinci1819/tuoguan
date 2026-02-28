@@ -1,0 +1,45 @@
+{
+  "name": "homework_main",
+  "title": "作业主表",
+  "schemas": [
+    {
+      "name": "subject",
+      "title": "科目",
+      "type": "String"
+    },
+    {
+      "name": "source_type",
+      "title": "作业来源",
+      "type": "String"
+    },
+    {
+      "name": "creator_id",
+      "title": "创建者ID",
+      "type": "String"
+    },
+    {
+      "name": "work_list",
+      "title": "作业文字描述",
+      "type": "MultiLineString"
+    },
+    {
+      "name": "source_media",
+      "title": "布置时上传的媒体URL",
+      "type": "Array",
+      "items": {
+        "type": "Url"
+      }
+    },
+    {
+      "name": "register_ocr_raw",
+      "title": "OCR原始文本",
+      "type": "Object"
+    },
+    {
+      "name": "deadline",
+      "title": "截止时间",
+      "type": "DateTime",
+      "format": "timestamp-ms"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+[
+  {
+    "_id": "user_001",
+    "openid": "wx_openid_001",
+    "role": "teacher",
+    "school": "北京市第一中学",
+    "grade": "",
+    "name": "张老师",
+    "avatar": "https://example.com/avatars/teacher_001.jpg",
+    "class_id": "class_001",
+    "parent_student_bind": [],
+    "createdAt": 1893456000000,
+    "updatedAt": 1893456000000
+  },
+  {
+    "_id": "user_002",
+    "openid": "wx_openid_002",
+    "role": "student",
+    "school": "北京市第一中学",
+    "grade": "一年级",
+    "name": "小明",
+    "avatar": "https://example.com/avatars/student_001.jpg",
+    "class_id": "class_001",
+    "parent_student_bind": [],
+    "createdAt": 1893456000000,
+    "updatedAt": 1893456000000
+  },
+  {
+    "_id": "user_003",
+    "openid": "wx_openid_003",
+    "role": "parent",
+    "school": "",
+    "grade": "",
+    "name": "王爸爸",
+    "avatar": "https://example.com/avatars/parent_001.jpg",
+    "class_id": "",
+    "parent_student_bind": [
+      {
+        "student_id": "user_002",
+        "relationship": "父亲",
+        "bind_time": 1893456000000
+      }
+    ],
+    "createdAt": 1893456000000,
+    "updatedAt": 1893456000000
+  },
+  {
+    "_id": "user_004",
+    "openid": "wx_openid_004",
+    "role": "admin",
+    "school": "北京市第一中学",
+    "grade": "",
+    "name": "李管理员",
+    "avatar": "https://example.com/avatars/admin_001.jpg",
+    "class_id": "",
+    "parent_student_bind": [],
+    "createdAt": 1893456000000,
+    "updatedAt": 1893456000000
+  }
+]

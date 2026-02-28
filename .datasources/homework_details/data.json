@@ -1,0 +1,98 @@
+[
+  {
+    "_id": "homework_detail_001",
+    "base_hw_id": "homework_001",
+    "student_id": "user_003",
+    "status": "已提交",
+    "submit_media": [
+      "https://example.com/submit/math_homework_001.jpg",
+      "https://example.com/submit/math_homework_002.jpg"
+    ],
+    "submit_ocr_raw": {
+      "text": "小明解答：1. 3+5=8 2. 7-2=5 3. 4×6=24",
+      "confidence": 0.95,
+      "language": "zh-CN"
+    },
+    "ai_grading_details": {
+      "score": 90,
+      "correct_count": 3,
+      "wrong_count": 0,
+      "feedback": "解答正确，书写工整",
+      "detailed_analysis": [
+        {
+          "question_no": 1,
+          "correct": true,
+          "explanation": "加法运算正确"
+        },
+        {
+          "question_no": 2,
+          "correct": true,
+          "explanation": "减法运算正确"
+        },
+        {
+          "question_no": 3,
+          "correct": true,
+          "explanation": "乘法运算正确"
+        }
+      ]
+    },
+    "is_human_verified": false,
+    "grading_report": "<p>小明同学本次作业完成得很好，三道题目全部正确。书写工整，解题思路清晰。继续保持！</p>",
+    "createdAt": 1737984000000,
+    "updatedAt": 1737984000000
+  },
+  {
+    "_id": "homework_detail_002",
+    "base_hw_id": "homework_001",
+    "student_id": "user_004",
+    "status": "待订正",
+    "submit_media": [
+      "https://example.com/submit/math_homework_003.jpg"
+    ],
+    "submit_ocr_raw": {
+      "text": "小红解答：1. 3+5=7 2. 7-2=5 3. 4×6=20",
+      "confidence": 0.92,
+      "language": "zh-CN"
+    },
+    "ai_grading_details": {
+      "score": 67,
+      "correct_count": 1,
+      "wrong_count": 2,
+      "feedback": "第1题和第3题需要订正",
+      "detailed_analysis": [
+        {
+          "question_no": 1,
+          "correct": false,
+          "explanation": "3+5应该等于8，不是7"
+        },
+        {
+          "question_no": 2,
+          "correct": true,
+          "explanation": "减法运算正确"
+        },
+        {
+          "question_no": 3,
+          "correct": false,
+          "explanation": "4×6应该等于24，不是20"
+        }
+      ]
+    },
+    "is_human_verified": true,
+    "grading_report": "<p>小红同学本次作业有两道题目需要订正。第1题加法运算错误，第3题乘法运算错误。请认真订正后重新提交。</p>",
+    "createdAt": 1737984000000,
+    "updatedAt": 1738070400000
+  },
+  {
+    "_id": "homework_detail_003",
+    "base_hw_id": "homework_002",
+    "student_id": "user_003",
+    "status": "未提交",
+    "submit_media": [],
+    "submit_ocr_raw": {},
+    "ai_grading_details": {},
+    "is_human_verified": false,
+    "grading_report": "",
+    "createdAt": 1737984000000,
+    "updatedAt": 1737984000000
+  }
+]

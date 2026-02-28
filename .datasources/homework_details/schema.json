@@ -1,0 +1,49 @@
+{
+  "name": "homework_details",
+  "title": "作业详情表",
+  "schemas": [
+    {
+      "name": "base_hw_id",
+      "title": "关联主任务ID",
+      "type": "String"
+    },
+    {
+      "name": "student_id",
+      "title": "学生ID",
+      "type": "String"
+    },
+    {
+      "name": "status",
+      "title": "状态",
+      "type": "String"
+    },
+    {
+      "name": "submit_media",
+      "title": "提交的解答媒体",
+      "type": "Array",
+      "items": {
+        "type": "Url"
+      }
+    },
+    {
+      "name": "submit_ocr_raw",
+      "title": "OCR原始文本",
+      "type": "Object"
+    },
+    {
+      "name": "ai_grading_details",
+      "title": "AI批改详情",
+      "type": "Object"
+    },
+    {
+      "name": "is_human_verified",
+      "title": "老师确认核查",
+      "type": "Boolean"
+    },
+    {
+      "name": "grading_report",
+      "title": "总体评价",
+      "type": "RichText"
+    }
+  ]
+}

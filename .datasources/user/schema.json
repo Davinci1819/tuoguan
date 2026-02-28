@@ -1,0 +1,49 @@
+{
+  "name": "user",
+  "title": "用户表",
+  "schemas": [
+    {
+      "name": "openid",
+      "title": "微信OpenID",
+      "type": "String"
+    },
+    {
+      "name": "role",
+      "title": "角色",
+      "type": "String"
+    },
+    {
+      "name": "school",
+      "title": "学校",
+      "type": "String"
+    },
+    {
+      "name": "grade",
+      "title": "年级",
+      "type": "String"
+    },
+    {
+      "name": "name",
+      "title": "姓名",
+      "type": "String"
+    },
+    {
+      "name": "avatar",
+      "title": "头像",
+      "type": "Url"
+    },
+    {
+      "name": "class_id",
+      "title": "班级ID",
+      "type": "String"
+    },
+    {
+      "name": "parent_student_bind",
+      "title": "亲子绑定记录",
+      "type": "Array",
+      "items": {
+        "type": "Object"
+      }
+    }
+  ]
+}

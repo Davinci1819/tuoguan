@@ -1,0 +1,52 @@
+{
+  "name": "question_bank",
+  "title": "公共题库表",
+  "schemas": [
+    {
+      "name": "grade",
+      "title": "年级",
+      "type": "String"
+    },
+    {
+      "name": "subject",
+      "title": "科目",
+      "type": "String"
+    },
+    {
+      "name": "question_hash",
+      "title": "题目哈希值",
+      "type": "String"
+    },
+    {
+      "name": "content",
+      "title": "题干",
+      "type": "RichText"
+    },
+    {
+      "name": "answer",
+      "title": "标准答案及解析",
+      "type": "RichText"
+    },
+    {
+      "name": "knowledge_points",
+      "title": "知识点标签",
+      "type": "Array",
+      "items": {
+        "type": "String"
+      }
+    },
+    {
+      "name": "question_vector",
+      "title": "题目向量",
+      "type": "Array",
+      "items": {
+        "type": "Number"
+      }
+    },
+    {
+      "name": "parent_qid",
+      "title": "母题ID",
+      "type": "String"
+    }
+  ]
+}
