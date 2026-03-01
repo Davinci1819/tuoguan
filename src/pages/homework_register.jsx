@@ -70,7 +70,7 @@ export default function HomeworkRegister(props) {
   const handleGenerateList = async () => {
     try {
       if (activeTab === 'manual') {
-        // 手动填写模式
+        // Tab 1：单科目提交
         if (!manualFormData.subject || !manualFormData.work_list) {
           toast({
             title: "信息不完整",
@@ -92,7 +92,7 @@ export default function HomeworkRegister(props) {
           }
         });
       } else {
-        // 拍照识别模式
+        // Tab 2：多科目批量提交
         if (aiStructuredData.length === 0) {
           toast({
             title: "无识别结果",
@@ -108,13 +108,11 @@ export default function HomeworkRegister(props) {
             params: {
               subject: homework.subject,
               work_list: homework.work_list,
-              deadline: currentDate.getTime(),
+              deadline: homework.deadline || currentDate.getTime(),
               source_media: uploadedImageUrl ? [uploadedImageUrl] : [],
               source_type: '家长上传',
               creator_id: props.$w.auth.currentUser?.userId || '',
-              register_ocr_raw: {
-                raw_text: registerOcrRaw
-              }
+              register_ocr_raw: registerOcrRaw
             }
           });
         }
