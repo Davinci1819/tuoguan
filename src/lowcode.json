@@ -1,4 +1,37 @@
 {
   "main": "homework_register",
-  "items": []
+  "items": [
+    {
+      "id": "ai_tuoguan_app",
+      "name": "AI智慧托管",
+      "description": "基于AI的智慧托管小程序，提供作业登记、作业管理、错题本等功能",
+      "type": "miniprogram",
+      "pages": [
+        {
+          "id": "homework_register",
+          "name": "作业登记",
+          "path": "pages/homework_register.jsx",
+          "isHome": true
+        }
+      ],
+      "dataSources": [
+        {
+          "name": "homework_main",
+          "description": "作业主表"
+        },
+        {
+          "name": "homework_details",
+          "description": "作业详情表"
+        },
+        {
+          "name": "question_bank",
+          "description": "题库"
+        },
+        {
+          "name": "wrong_question",
+          "description": "错题本"
+        }
+      ]
+    }
+  ]
 }
