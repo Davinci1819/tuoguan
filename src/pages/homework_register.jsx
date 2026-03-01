@@ -18,7 +18,7 @@ export default function HomeworkRegister(props) {
   const [manualHomeworkList, setManualHomeworkList] = useState([{
     subject: '',
     work_list: '',
-    deadline: new Date(),
+    deadline: new Date(new Date().setHours(21, 30, 0, 0)),
     attachments: []
   }]);
 
@@ -42,7 +42,7 @@ export default function HomeworkRegister(props) {
     setManualHomeworkList([...manualHomeworkList, {
       subject: '',
       work_list: '',
-      deadline: new Date(),
+      deadline: new Date(new Date().setHours(21, 30, 0, 0)),
       attachments: []
     }]);
   };
@@ -220,13 +220,7 @@ export default function HomeworkRegister(props) {
                   <Input id={`deadline-${index}`} type="datetime-local" value={homework.deadline.toISOString().slice(0, 16)} onChange={e => updateHomeworkItem(index, 'deadline', new Date(e.target.value))} />
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor={`attachments-${index}`}>附件上传</Label>
-                  <Input id={`attachments-${index}`} type="file" multiple onChange={e => {
-                const files = Array.from(e.target.files);
-                updateHomeworkItem(index, 'attachments', files);
-              }} />
-                </div>
+
               </CardContent>
             </Card>)}
           
