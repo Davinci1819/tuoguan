@@ -90,41 +90,41 @@ export default function HomeworkRegister(props) {
   const handleGenerateList = async () => {
     try {
       if (activeTab === 'manual') {
-        // Tab 1：单科目提交
-        if (!manualFormData.subject || !manualFormData.work_list) {
+        // ===== Tab 1：手动填写批量提交 =====
+        const manualList = manualHomeworkList;
+        if (!manualList || manualList.length === 0) {
           toast({
-            title: "信息不完整",
-            description: "请填写科目和作业描述",
-            variant: "destructive"
+            title: "请至少填写一个科目",
+            icon: "error"
           });
           return;
         }
-        // Tab 1：多科目批量提交
-        for (const homework of manualHomeworkList) {
+        for (const item of manualList) {
           await props.$w.cloud.callDataSource({
             dataSourceName: 'homework_main',
             methodName: 'wedaCreate',
+            // 修正点：使用正确的底层 API
             params: {
-              subject: homework.subject,
-              work_list: homework.work_list,
-              deadline: homework.deadline.getTime(),
+              subject: item.subject,
+              work_list: item.work_list,
+              deadline: item.deadline.getTime() || currentDate.getTime(),
               source_media: uploadedImageUrl ? [uploadedImageUrl] : [],
               source_type: '家长上传',
-              creator_id: props.$w.auth.currentUser?.userId || ''
+              creator_id: props.$w.auth.currentUser?.userId
             }
           });
         }
       } else {
-        // Tab 2：多科目批量提交
-        if (aiStructuredData.length === 0) {
+        // ===== Tab 2：拍照识别批量提交 =====
+        const aiList = aiStructuredData;
+        if (!aiList || aiList.length === 0) {
           toast({
-            title: "无识别结果",
-            description: "请先上传图片进行识别",
-            variant: "destructive"
+            title: "没有识别到有效作业",
+            icon: "error"
           });
           return;
         }
-        for (const homework of aiStructuredData) {
+        for (const homework of aiList) {
           await props.$w.cloud.callDataSource({
             dataSourceName: 'homework_main',
             methodName: 'wedaCreate',
@@ -133,28 +133,28 @@ export default function HomeworkRegister(props) {
               work_list: homework.work_list,
               deadline: homework.deadline || currentDate.getTime(),
               source_media: uploadedImageUrl ? [uploadedImageUrl] : [],
-              source_type: '家长上传',
-              creator_id: props.$w.auth.currentUser?.userId || '',
+              source_type: '拍照识别',
+              creator_id: props.$w.auth.currentUser?.userId,
               register_ocr_raw: registerOcrRaw
             }
           });
         }
       }
       toast({
-        title: "提交成功",
-        description: "作业清单已生成"
+        title: "清单生成成功",
+        icon: "success"
       });
 
-      // 跳转到作业中心页
+      // 提交成功后跳转
       props.$w.utils.redirectTo({
         pageId: 'homework_center',
         params: {}
       });
     } catch (error) {
+      console.error("读取数据库失败:", error);
       toast({
-        title: "提交失败",
-        description: error.message || "数据提交过程中出现错误",
-        variant: "destructive"
+        title: "提交失败，请重试",
+        icon: "error"
       });
     }
   };
@@ -233,7 +233,7 @@ export default function HomeworkRegister(props) {
           {/* 添加作业项目按钮 */}
           <div className="flex justify-center">
             <Button type="button" variant="outline" onClick={handleAddHomeworkItem} className="flex items-center gap-2">
-              <span>+ 添加项目</span>
+              <span>+ 添加科目</span>
             </Button>
           </div>
         </TabsContent>
