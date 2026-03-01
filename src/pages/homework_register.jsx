@@ -14,13 +14,13 @@ export default function HomeworkRegister(props) {
   const [registerOcrRaw, setRegisterOcrRaw] = useState('');
   const [aiStructuredData, setAiStructuredData] = useState([]);
 
-  // Tab 1 表单数据
-  const [manualFormData, setManualFormData] = useState({
+  // Tab 1 表单数据队列
+  const [manualHomeworkList, setManualHomeworkList] = useState([{
     subject: '',
     work_list: '',
     deadline: new Date(),
     attachments: []
-  });
+  }]);
 
   // 科目选项
   const subjectOptions = [{
@@ -36,6 +36,26 @@ export default function HomeworkRegister(props) {
     value: 'custom',
     label: '自定义'
   }];
+
+  // 添加作业项目
+  const handleAddHomeworkItem = () => {
+    setManualHomeworkList([...manualHomeworkList, {
+      subject: '',
+      work_list: '',
+      deadline: new Date(),
+      attachments: []
+    }]);
+  };
+
+  // 更新作业项目数据
+  const updateHomeworkItem = (index, field, value) => {
+    const updatedList = [...manualHomeworkList];
+    updatedList[index] = {
+      ...updatedList[index],
+      [field]: value
+    };
+    setManualHomeworkList(updatedList);
+  };
 
   // 处理图片上传成功
   const handleImageUploadSuccess = async event => {
@@ -79,18 +99,21 @@ export default function HomeworkRegister(props) {
           });
           return;
         }
-        await props.$w.cloud.callDataSource({
-          dataSourceName: 'homework_main',
-          method: 'create',
-          params: {
-            subject: manualFormData.subject,
-            work_list: manualFormData.work_list,
-            deadline: manualFormData.deadline.getTime(),
-            source_media: uploadedImageUrl ? [uploadedImageUrl] : [],
-            source_type: '家长上传',
-            creator_id: props.$w.auth.currentUser?.userId || ''
-          }
-        });
+        // Tab 1：多科目批量提交
+        for (const homework of manualHomeworkList) {
+          await props.$w.cloud.callDataSource({
+            dataSourceName: 'homework_main',
+            methodName: 'wedaCreate',
+            params: {
+              subject: homework.subject,
+              work_list: homework.work_list,
+              deadline: homework.deadline.getTime(),
+              source_media: uploadedImageUrl ? [uploadedImageUrl] : [],
+              source_type: '家长上传',
+              creator_id: props.$w.auth.currentUser?.userId || ''
+            }
+          });
+        }
       } else {
         // Tab 2：多科目批量提交
         if (aiStructuredData.length === 0) {
@@ -104,7 +127,7 @@ export default function HomeworkRegister(props) {
         for (const homework of aiStructuredData) {
           await props.$w.cloud.callDataSource({
             dataSourceName: 'homework_main',
-            method: 'create',
+            methodName: 'wedaCreate',
             params: {
               subject: homework.subject,
               work_list: homework.work_list,
@@ -168,56 +191,51 @@ export default function HomeworkRegister(props) {
 
         {/* Tab 1: 手动填写 */}
         <TabsContent value="manual" className="space-y-4 mt-4">
-          <Card>
-            <CardHeader>
-              <CardTitle>填写作业信息</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="subject">科目</Label>
-                <Select value={manualFormData.subject} onValueChange={value => setManualFormData({
-                ...manualFormData,
-                subject: value
-              })}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="选择科目" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {subjectOptions.map(option => <SelectItem key={option.value} value={option.value}>
-                        {option.label}
-                      </SelectItem>)}
-                  </SelectContent>
-                </Select>
-              </div>
+          {manualHomeworkList.map((homework, index) => <Card key={index} className="mb-4">
+              <CardHeader>
+                <CardTitle className="text-lg">作业项目 {index + 1}</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor={`subject-${index}`}>科目</Label>
+                  <Select value={homework.subject} onValueChange={value => updateHomeworkItem(index, 'subject', value)}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="选择科目" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {subjectOptions.map(option => <SelectItem key={option.value} value={option.value}>
+                          {option.label}
+                        </SelectItem>)}
+                    </SelectContent>
+                  </Select>
+                </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="work-list">作业描述</Label>
-                <Textarea id="work-list" placeholder="请输入作业的具体内容..." value={manualFormData.work_list} onChange={e => setManualFormData({
-                ...manualFormData,
-                work_list: e.target.value
-              })} rows={4} />
-              </div>
+                <div className="space-y-2">
+                  <Label htmlFor={`work-list-${index}`}>作业描述</Label>
+                  <Textarea id={`work-list-${index}`} placeholder="请输入作业的具体内容..." value={homework.work_list} onChange={e => updateHomeworkItem(index, 'work_list', e.target.value)} rows={4} />
+                </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="deadline">截止时间</Label>
-                <Input id="deadline" type="datetime-local" value={manualFormData.deadline.toISOString().slice(0, 16)} onChange={e => setManualFormData({
-                ...manualFormData,
-                deadline: new Date(e.target.value)
-              })} />
-              </div>
+                <div className="space-y-2">
+                  <Label htmlFor={`deadline-${index}`}>截止时间</Label>
+                  <Input id={`deadline-${index}`} type="datetime-local" value={homework.deadline.toISOString().slice(0, 16)} onChange={e => updateHomeworkItem(index, 'deadline', new Date(e.target.value))} />
+                </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="attachments">附件上传</Label>
-                <Input id="attachments" type="file" multiple onChange={e => {
+                <div className="space-y-2">
+                  <Label htmlFor={`attachments-${index}`}>附件上传</Label>
+                  <Input id={`attachments-${index}`} type="file" multiple onChange={e => {
                 const files = Array.from(e.target.files);
-                setManualFormData({
-                  ...manualFormData,
-                  attachments: files
-                });
+                updateHomeworkItem(index, 'attachments', files);
               }} />
-              </div>
-            </CardContent>
-          </Card>
+                </div>
+              </CardContent>
+            </Card>)}
+          
+          {/* 添加作业项目按钮 */}
+          <div className="flex justify-center">
+            <Button type="button" variant="outline" onClick={handleAddHomeworkItem} className="flex items-center gap-2">
+              <span>+ 添加项目</span>
+            </Button>
+          </div>
         </TabsContent>
 
         {/* Tab 2: 拍照识别 */}
